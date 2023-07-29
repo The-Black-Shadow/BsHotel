@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check your status</title>
+    <title>Profile</title>
 </head>
 <body>
     <h2>Coming soon......!</h2>

@@ -10,13 +10,6 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>BS Online Booking</title>
-   <!--Bootstrap-->
-   <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <!-- swiper js cdn link -->
@@ -41,7 +34,8 @@
          <a href="#gallery">gallery</a>
          <a href="#review">review</a>
          <a href="#faq">faq</a>
-         <a href="signup/index.php" class="btn"> Account</a>
+         <a href="#reservation" class="btn"> book now</a>
+         <a href="profile.php" class="btn"> Profile</a>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
@@ -134,6 +128,7 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-1.jpg" alt="">
+                  <a href="#reservation" class="fas fa-shopping-cart"></a>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -145,6 +140,7 @@
                      <i class="fas fa-star"></i>
                      <i class="fas fa-star-half-alt"></i>
                   </div>
+                  <a href="#" class="btn">book now</a>
                </div>
             </div>
 
@@ -152,6 +148,7 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-2.jpg" alt="">
+                  <a href="#reservation" class="fas fa-shopping-cart"></a>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -163,13 +160,15 @@
                      <i class="fas fa-star"></i>
                      <i class="fas fa-star-half-alt"></i>
                   </div>
+                  <a href="#reservation" class="btn">book now</a>
                </div>
             </div>
 
             <div class="swiper-slide slide">
                <div class="image">
-                  <span class="price">$25.99/night</span>
+                  <span class="price">$15.99/night</span>
                   <img src="images/room-3.jpg" alt="">
+                  <a href="#reservation" class="fas fa-shopping-cart"></a>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -179,13 +178,15 @@
                      <i class="fas fa-star"></i>
                      <i class="fas fa-star-half-alt"></i>
                   </div>
+                  <a href="#reservation" class="btn">book now</a>
                </div>
             </div>
 
             <div class="swiper-slide slide">
                <div class="image">
-                  <span class="price">$35.99/night</span>
+                  <span class="price">$15.99/night</span>
                   <img src="images/room-4.jpg" alt="">
+                  <a href="#reservation" class="fas fa-shopping-cart"></a>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -194,6 +195,7 @@
                      <i class="fas fa-star"></i>
                      <i class="fas fa-star"></i>
                   </div>
+                  <a href="#reservation" class="btn">book now</a>
                </div>
             </div>
 
@@ -201,6 +203,7 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-5.jpg" alt="">
+                  <a href="#reservation" class="fas fa-shopping-cart"></a>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -212,6 +215,7 @@
                      <i class="fas fa-star"></i>
                      <i class="fas fa-star"></i></i>
                   </div>
+                  <a href="#" class="btn">book now</a>
                </div>
             </div>
 
@@ -219,6 +223,7 @@
                <div class="image">
                   <span class="price">$15.99/night</span>
                   <img src="images/room-6.jpg" alt="">
+                  <a href="#reservation" class="fas fa-shopping-cart"></a>
                </div>
                <div class="content">
                   <h3>exclusive room</h3>
@@ -229,6 +234,7 @@
                      <i class="fas fa-star"></i>
                      <i class="fas fa-star-half-alt"></i>
                   </div>
+                  <a href="#reservation" class="btn">book now</a>
                </div>
             </div>
 
@@ -632,8 +638,7 @@
 
    <!-- end -->
 
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
    <script src="js/script.js"></script>
 
