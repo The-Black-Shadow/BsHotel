@@ -1,6 +1,6 @@
 <?php
-	include './php/connection.php'
-	include './php/user.php'
+	include '../php/connection.php';
+	include '../php/user.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +8,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Login and Registration</title>
+  <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="./style.css">
@@ -68,7 +74,7 @@
 
 					<p class="fieldset">
 						<label class="image-replace email" for="signup-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signup-email" type="email" name="email" placeholder="E-mail">
+						<input class="full-width has-padding has-border" id="signup-email" type="text" name="email" placeholder="E-mail">
 						<span class="error-message">Enter a valid email address!</span>
 					</p>
 
@@ -84,9 +90,7 @@
 						<label for="accept-terms">I agree to the <a class="accept-terms" href="#0">Terms</a></label>
 					</p>
 
-					<p class="fieldset">
-						<input class="full-width has-padding" type="submit" value="Create account">
-					</p>
+					<button type="submit" name="signUp" class="btn btn-primary">Sign Up</button>
 				</form>
 
 				
