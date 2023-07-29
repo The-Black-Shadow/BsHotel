@@ -21,13 +21,6 @@
 </head>
 <body>
 
-<nav class="main-nav">
-	<ul>
-		<li><a class="signin" href="#0">Sign in</a></li>
-		<li><a class="signup" href="#0">Sign up</a></li>
-	</ul>
-</nav>
-
 <div class="user-modal">
 		<div class="user-modal-container">
 			<ul class="switcher">
@@ -51,11 +44,6 @@
 					</p>
 
 					<p class="fieldset">
-						<input type="checkbox" id="remember-me" checked>
-						<label for="remember-me">Remember me</label>
-					</p>
-
-					<p class="fieldset">
 						<input class="full-width" type="submit" value="Login">
 					</p>
 				</form>
@@ -69,25 +57,17 @@
 					<p class="fieldset">
 						<label class="image-replace username" for="signup-username">Username</label>
 						<input class="full-width has-padding has-border" id="signup-username" type="text" name="name" placeholder="Username">
-						<span class="error-message">Your username can only contain numeric and alphabetic symbols!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace email" for="signup-email">E-mail</label>
 						<input class="full-width has-padding has-border" id="signup-email" type="text" name="email" placeholder="E-mail">
-						<span class="error-message">Enter a valid email address!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace password" for="signup-password">Password</label>
 						<input class="full-width has-padding has-border" id="signup-password" type="password" name="password"  placeholder="Password">
 						<a href="#0" class="hide-password">Show</a>
-						<span class="error-message">Your password has to be at least 6 characters long!</span>
-					</p>
-
-					<p class="fieldset">
-						<input type="checkbox" id="accept-terms">
-						<label for="accept-terms">I agree to the <a class="accept-terms" href="#0">Terms</a></label>
 					</p>
 
 					<button type="submit" name="signUp" class="btn btn-primary">Sign Up</button>

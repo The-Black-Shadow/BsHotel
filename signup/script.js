@@ -7,38 +7,11 @@ jQuery(document).ready(function($){
     $tab_login = $form_modal_tab.children('li').eq(0).children('a'),
     $tab_signup = $form_modal_tab.children('li').eq(1).children('a'),
     $forgot_password_link = $form_login.find('.form-bottom-message a'),
-    $back_to_login_link = $form_forgot_password.find('.form-bottom-message a'),
-    $main_nav = $('.main-nav');
+    $back_to_login_link = $form_forgot_password.find('.form-bottom-message a');
 
-  //open modal
-  $main_nav.on('click', function(event){
-
-    if( $(event.target).is($main_nav) ) {
-      // on mobile open the submenu
-      $(this).children('ul').toggleClass('is-visible');
-    } else {
-      // on mobile close submenu
-      $main_nav.children('ul').removeClass('is-visible');
-      //show modal layer
-      $form_modal.addClass('is-visible'); 
-      //show the selected form
-      ( $(event.target).is('.signup') ) ? signup_selected() : login_selected();
-    }
-
-  });
-
-  //close modal
-  $('.user-modal').on('click', function(event){
-    if( $(event.target).is($form_modal) || $(event.target).is('.close-form') ) {
-      $form_modal.removeClass('is-visible');
-    } 
-  });
-  //close modal when clicking the esc keyboard button
-  $(document).keyup(function(event){
-      if(event.which=='27'){
-        $form_modal.removeClass('is-visible');
-      }
-    });
+  // Show user modal by default
+  $form_modal.addClass('is-visible'); 
+  login_selected();
 
   //switch from a tab to another
   $form_modal_tab.on('click', function(event) {
@@ -91,19 +64,7 @@ jQuery(document).ready(function($){
     $form_forgot_password.addClass('is-selected');
   }
 
-  //REMOVE THIS - it's just to show error messages 
-  $form_login.find('input[type="submit"]').on('click', function(event){
-    event.preventDefault();
-    $form_login.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-  });
-  $form_signup.find('input[type="submit"]').on('click', function(event){
-    event.preventDefault();
-    $form_signup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-  });
 
-
-  //IE9 placeholder fallback
-  //credits http://www.hagenburger.net/BLOG/HTML5-Input-Placeholder-Fix-With-jQuery.html
   if(!Modernizr.input.placeholder){
     $('[placeholder]').focus(function() {
       var input = $(this);
@@ -125,11 +86,8 @@ jQuery(document).ready(function($){
         })
     });
   }
-
 });
 
-
-//credits https://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
 jQuery.fn.putCursorAtEnd = function() {
   return this.each(function() {
       // If this function exists...
