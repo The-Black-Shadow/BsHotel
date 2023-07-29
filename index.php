@@ -1,6 +1,17 @@
 <?php
    include 'php/connection.php';
-   include 'php/booking.php';
+   include 'php/user.php';
+   session_start();
+   if(isset($_SESSION['acc_type']) && $_SESSION['acc_type'] == 'user'){
+      header("Location: bsonline.php");
+      exit();
+    }
+  
+    
+    if(isset($_SESSION['acc_type']) && $_SESSION['acc_type'] == 'admin'){
+      header("Location: admin.php");
+      exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +30,8 @@
     />
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <!-- swiper js cdn link -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+   <!-- swiper css cdn link -->
+   <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <!-- custom css link -->
    <link rel="stylesheet" href="css/style.css">
 </head>
@@ -517,75 +528,6 @@
 
    <!-- end -->
 
-   <!-- reservation -->
-
-   <section class="reservation" id="reservation">
-
-      <h1 class="heading">book now</h1>
-
-      <form name="form" method="post">
-
-         <div class="container">
-
-            <div class="box">
-               <p>name <span>*</span></p>
-               <input type="text" class="input" name="name" placeholder="Your Name">
-            </div>
-
-            <div class="box">
-               <p>email <span>*</span></p>
-               <input type="email" class="input" name="email" placeholder="Your Email">
-            </div>
-
-            <div class="box">
-               <p>password <span>*</span></p>
-               <input type="password" class="input" name="password" placeholder="Your Password">
-            </div>
-
-            <div class="box">
-               <p>check in <span>*</span></p>
-               <input type="date" name="check_in" class="input">
-            </div>
-
-            <div class="box">
-               <p>check out <span>*</span></p>
-               <input type="date" name="check_out" class="input">
-            </div>
-
-            <div class="box">
-               <p>adults <span>*</span></p>
-               <input type="number" class="input" name="adults">
-               </select>
-            </div>
-
-            <div class="box">
-               <p>children <span>*</span></p>
-               <input type="number" class="input" name="children">
-            </div>
-
-            <div class="box">
-               <p>rooms <span>*</span></p>
-               <input type="number" class="input" name="rooms">
-            </div>
-
-            <div class="box">
-               <p>room type <span>*</span></p>
-               <select name="room_type" class="input">
-                     <option value="Ac rooms">ac_room</option>
-                     <option value="Non ac rooms">non_ac_room</option>
-                     <option value="Exclusive rooms">exclusive_rooms</option>
-               </select>
-            </div>
-   
-         </div>
-
-         <input type="submit" name="submit" value="Book Now" class="btn">
-
-      </form>
-
-   </section>
-
-   <!-- end -->
 
    <!-- footer -->
 

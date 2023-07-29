@@ -1,7 +1,8 @@
+<!-- connection -->
 <?php
-	include '../php/connection.php';
-	include '../php/user.php';
-?>
+  include '../php/connection.php';
+  include '../php/user.php';
+ ?>
 
 <!DOCTYPE html>
 <html lang="en" >
@@ -29,23 +30,19 @@
 			</ul>
 
 			<div id="login">
-				<form class="form">
+				<form class="form" method="POST">
 					<p class="fieldset">
 						<label class="image-replace email" for="signin-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
-						<span class="error-message">An account with this email address does not exist!</span>
+						<input class="full-width has-padding has-border" id="signin-email" type="email" name="name" placeholder="E-mail">
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace password" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Password">
+						<input class="full-width has-padding has-border" id="signin-password" type="password"  name="password" placeholder="Password">
 						<a href="#0" class="hide-password">Show</a>
-						<span class="error-message">Wrong password! Try again.</span>
 					</p>
 
-					<p class="fieldset">
-						<input class="full-width" type="submit" value="Login">
-					</p>
+					<button type="submit" name="logIn" class="btn btn-primary">Log In</button>
 				</form>
 				
 				<p class="form-bottom-message"><a href="#0">Forgot your password?</a></p>
@@ -70,7 +67,7 @@
 						<a href="#0" class="hide-password">Show</a>
 					</p>
 
-					<button type="submit" name="signUp" class="btn btn-primary">Sign Up</button>
+					<button type="submit" name="signUp" class="btn btn-primary">signUp</button>
 				</form>
 
 				

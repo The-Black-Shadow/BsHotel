@@ -1,6 +1,7 @@
 <?php
    include 'php/connection.php';
    include 'php/booking.php';
+   include 'php/user.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +13,8 @@
    <title>BS Online Booking</title>
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <!-- swiper js cdn link -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <!-- custom css link -->
+   <!-- swiper css cdn link -->
+   <link rel="stylesheet" href="css/swiper-bundle.min.css" />    <!-- custom css link -->
    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -30,12 +30,12 @@
          <a href="#about">about</a>
          <a href="#room">Hotel</a>
          <a href="travelling.html">Travelling</a>
-         <a href="parlour.html">Parlour</a>
          <a href="#gallery">gallery</a>
          <a href="#review">review</a>
          <a href="#faq">faq</a>
          <a href="#reservation" class="btn"> book now</a>
          <a href="profile.php" class="btn"> Profile</a>
+         <a href="logout.php" class="btn">LogOut</a>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
@@ -533,7 +533,7 @@
 
          <div class="container">
 
-            <div class="box">
+            <!-- <div class="box">
                <p>name <span>*</span></p>
                <input type="text" class="input" name="name" placeholder="Your Name">
             </div>
@@ -546,7 +546,7 @@
             <div class="box">
                <p>password <span>*</span></p>
                <input type="password" class="input" name="password" placeholder="Your Password">
-            </div>
+            </div> -->
 
             <div class="box">
                <p>check in <span>*</span></p>
