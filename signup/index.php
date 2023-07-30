@@ -67,6 +67,11 @@
 						<a href="#0" class="hide-password">Show</a>
 					</p>
 
+					<p class="fieldset">
+						<label class="image-replace username" for="signup-address">Username</label>
+						<input class="full-width has-padding has-border" id="signup-address" type="text" name="address" placeholder="Address">
+					</p>
+
 					<button type="submit" name="signUp" class="btn btn-primary">signUp</button>
 				</form>
 

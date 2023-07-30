@@ -21,8 +21,8 @@ if (isset($_POST['signUp'])) {
     } else {
         // Email does not exist, proceed with registration
         // Prepare the statement to insert user data
-        $stmt = $conn->prepare("INSERT INTO user (email, name, password, acc_type) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $_POST['email'], $_POST['name'], $_POST['password'], $acctype);
+        $stmt = $conn->prepare("INSERT INTO user (email, name, password, address, acc_type) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $_POST['email'], $_POST['name'], $_POST['password'], $_POST['address'], $acctype);
         $stmt->execute();
 
         // Set a session variable to indicate successful registration
@@ -66,6 +66,7 @@ if (isset($_POST['logIn'])) {
             $_SESSION['name'] = $row['name'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['password'] = $row['password'];
+            $_SESSION['address'] = $row['address'];
             $_SESSION['acc_type'] = $row['acc_type'];
 
             // Redirect based on the acc_type value
