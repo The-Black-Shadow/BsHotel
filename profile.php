@@ -1,6 +1,38 @@
 <?php
    include 'php/connection.php';
    include 'php/user.php';
+   $useremail=$_SESSION['email'];
+
+// Prepare the SQL statement
+$stmt = $conn->prepare("SELECT * FROM booking WHERE email = ? LIMIT 1");
+$stmt->bind_param("s", $useremail);
+
+// Execute the query
+$stmt->execute();
+
+// Get the result set
+$result = $stmt->get_result();
+
+// Check if any rows were returned
+if ($result->num_rows > 0) {
+    // Fetch the data from the result set (since we expect a single row, no need for a loop)
+    $row = $result->fetch_assoc();
+
+    // Now you can access the data using $row['column_name']
+    $name = $row['name'];
+    $address = $row['email'];
+    $check_in = $row['check_in'];
+    $check_out = $row['check_out'];
+    $adults = $row['adults'];
+    $children = $row['children'];
+    $rooms = $row['rooms'];
+    $room_type = $row['room_type'];
+
+    // Do something with the data...
+} else {
+    // No matching rows found
+    echo "No data found for the user: " . $_SESSION['email'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -124,7 +156,13 @@
       <span>Location:</span>
       <span><?php echo $_SESSION['address'] ?></span>
     </div>
-
+    <h3 style="text-align: center;">Booking status</h3>
+    <p>Check_in: <?php echo $check_in; ?></p>
+    <p>Check out: <?php echo $check_out; ?></p>
+    <p>Adults: <?php echo $adults; ?></p>
+    <p>Children: <?php echo $children; ?></p>
+    <p>Rooms: <?php echo $rooms; ?></p>
+    <p>Room Type: <?php echo $room_type; ?></p>
 
     <!-- Edit Profile link -->
     <a href="#" class="edit-profile-link">Edit Profile</a>
