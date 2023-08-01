@@ -1,6 +1,7 @@
 <?php
    include 'php/connection.php';
    include 'php/user.php';
+   include 'php/print.php';
    $useremail=$_SESSION['email'];
 
 // Prepare the SQL statement
@@ -157,12 +158,24 @@ if ($result->num_rows > 0) {
       <span><?php echo $_SESSION['address'] ?></span>
     </div>
     <h3 style="text-align: center;">Booking status</h3>
-    <p>Check_in: <?php echo $check_in; ?></p>
-    <p>Check out: <?php echo $check_out; ?></p>
-    <p>Adults: <?php echo $adults; ?></p>
-    <p>Children: <?php echo $children; ?></p>
-    <p>Rooms: <?php echo $rooms; ?></p>
-    <p>Room Type: <?php echo $room_type; ?></p>
+
+    <?php
+      if ($result->num_rows > 0){
+        echo '
+        <p>Check_in: ' . $check_in . '</p>
+        <p>Check out: ' . $check_out . '</p>
+        <p>Adults: ' . $adults . '</p>
+        <p>Children: ' . $children . '</p>
+        <p>Rooms: ' . $rooms . '</p>
+        <p>Room Type: ' . $room_type . '</p>
+        <form method="post">
+          <button type="submit" name="print_ticket">Print Ticket</button>
+        </form>';
+      }
+    ?>
+
+
+    
 
     <!-- Edit Profile link -->
     <a href="#" class="edit-profile-link">Edit Profile</a>
