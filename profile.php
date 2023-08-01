@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Profile Page</title>
+  <title>My Profile</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -139,11 +139,15 @@ if ($result->num_rows > 0) {
       text-align: center;
       margin-bottom: 10px;
     }
+    .white-link {
+    color: white;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>My Profile Page</h1>
+  <header class="header">
+    <h4><a href="index.php" class="white-link">Home</a></h4>
+    <h1>My Profile</h1>
   </header>
   <main>
     <h1><?php echo $_SESSION['name'] ?></h1>
