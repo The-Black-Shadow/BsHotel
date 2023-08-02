@@ -9,6 +9,48 @@
         exit();
     }
 
+    // Handle printing bookings for the selected date
+    if (isset($_POST['printBookings'])) {
+        require_once('./tcpdf/tcpdf.php');
+        $selectedDate = $_POST['check_in'];
+
+        // Prepare and execute the query to fetch bookings for the selected date
+        $stmt = $conn->prepare("SELECT * FROM booking WHERE DATE(check_in) = ?");
+        $stmt->bind_param("s", $selectedDate);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        // Create a new TCPDF instance
+        $pdf = new TCPDF();
+        $pdf->SetCreator('Your Company Name');
+        $pdf->SetAuthor('Admin');
+        $pdf->SetTitle('Bookings for ' . $selectedDate);
+        $pdf->AddPage();
+
+        // Set font
+        $pdf->SetFont('helvetica', 'B', 16);
+
+        // Add title
+        $pdf->Cell(0, 10, 'Bookings for ' . $selectedDate, 0, 1, 'C');
+
+        // Add booking details
+        while ($row = $result->fetch_assoc()) {
+            $pdf->SetFont('helvetica', '', 12);
+            $pdf->Cell(0, 10, 'Name: ' . $row['name'], 0, 1);
+            $pdf->Cell(0, 10, 'Email: ' . $row['email'], 0, 1);
+            $pdf->Cell(0, 10, 'Check-in: ' . $row['check_in'], 0, 1);
+            $pdf->Cell(0, 10, 'Check-out: ' . $row['check_out'], 0, 1);
+            // ... Add more details as needed ...
+            $pdf->Cell(0, 10, '-----------------------', 0, 1);
+        }
+
+        // Output the PDF as a download
+        $pdf->Output('bookings_for_' . $selectedDate . '.pdf', 'D');
+        exit(); // Make sure to exit the script after generating the PDF
+    }
+
+
     // Handle booking deletion
     if (isset($_POST['deleteBooking'])) {
         $selectedDate = $_POST['check_in'];
@@ -77,53 +119,7 @@
             } else {
                 echo '<p>No bookings found for ' . $selectedDate . '</p>';
             }
-        }
-
-        // ... Your booking deletion code ...
-
-    // Handle printing bookings for the selected date
-    if (isset($_POST['printBookings'])) {
-        $selectedDate = $_POST['check_in'];
-
-        // Prepare and execute the query to fetch bookings for the selected date
-        $stmt = $conn->prepare("SELECT * FROM booking WHERE DATE(check_in) = ?");
-        $stmt->bind_param("s", $selectedDate);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-
-        // Create a new TCPDF instance
-        require_once('tcpdf/tcpdf.php');
-        $pdf = new TCPDF();
-        $pdf->SetCreator('Your Company Name');
-        $pdf->SetAuthor('Admin');
-        $pdf->SetTitle('Bookings for ' . $selectedDate);
-        $pdf->AddPage();
-
-        // Set font
-        $pdf->SetFont('helvetica', 'B', 16);
-
-        // Add title
-        $pdf->Cell(0, 10, 'Bookings for ' . $selectedDate, 0, 1, 'C');
-
-        // Add booking details
-        while ($row = $result->fetch_assoc()) {
-            $pdf->SetFont('helvetica', '', 12);
-            $pdf->Cell(0, 10, 'Name: ' . $row['name'], 0, 1);
-            $pdf->Cell(0, 10, 'Email: ' . $row['email'], 0, 1);
-            $pdf->Cell(0, 10, 'Check-in: ' . $row['check_in'], 0, 1);
-            $pdf->Cell(0, 10, 'Check-out: ' . $row['check_out'], 0, 1);
-            $pdf->Cell(0, 10, 'Adults: ' . $adults, 0, 1);
-            $pdf->Cell(0, 10, 'Children: ' . $children, 0, 1);
-            $pdf->Cell(0, 10, 'Rooms: ' . $rooms, 0, 1);
-            $pdf->Cell(0, 10, 'Room Type: ' . $room_type, 0, 1);
-            // ... Add more details as needed ...
-            $pdf->Cell(0, 10, '-----------------------', 0, 1);
-        }
-
-        // Output the PDF as a download
-        $pdf->Output('bookings_for' . $selectedDate . '.pdf', 'D');
-    }        
+        }       
 
         // Display delete message if set
         if (isset($_SESSION['deleteMessage'])) {
