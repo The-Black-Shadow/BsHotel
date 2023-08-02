@@ -185,13 +185,13 @@
 
     <!-- Edit Profile form section -->
     <div class="edit-profile-form">
-      <form>
+      <form method="post">
         <input type="text" name="name" placeholder="Name">
-        <input type="text" name="email" placeholder="Email">
-        <input type="text" name="location" placeholder="Location">
+        <input type="password" name="password" placeholder="Password">
+        <input type="text" name="address" placeholder="Address">
         <!-- Add more input fields as needed -->
 
-        <button type="submit">Save Changes</button>
+        <button type="submit" name="upProfile">Update Profile</button>
       </form>
     </div>
   </main>

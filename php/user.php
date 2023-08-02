@@ -95,4 +95,29 @@ if (isset($_POST['logIn'])) {
     }
 }
 
+if (isset($_POST['upProfile'])) {
+    $name = $_POST['name'];
+    $email = $_SESSION['email'];
+    $password = $_POST['password'];
+    $address = $_POST['address'];
+
+    // Prepare the update SQL statement
+    $stmt = $conn->prepare("UPDATE user SET name = ?, password = ?, address = ? WHERE email = ?");
+    $stmt->bind_param("ssss", $name, $password, $address, $email);
+
+    // Execute the query
+    if ($stmt->execute()) {
+        // Update successful
+        $_SESSION['name'] = $name;
+        $_SESSION['address'] = $address;
+        header("Location: profile.php");
+    } else {
+        // Update failed
+        echo "Error updating profile: " . $stmt->error;
+    }
+
+    // Close the statement
+    $stmt->close();
+}
+
 ?>

@@ -28,7 +28,7 @@ if (isset($_POST['print_ticket'])) {
 
         // Set font and add ticket information
         $pdf->SetFont('helvetica', 'B', 16);
-        $pdf->Cell(0, 10, 'BS Online Management', 0, 1, 'C');
+        $pdf->Cell(0, 10, 'BS Online Booking', 0, 1, 'C');
         $pdf->Cell(0, 10, 'Ticket Information', 0, 1, 'C');
         $pdf->Cell(0, 10, '---------------------', 0, 1, 'C');
 
