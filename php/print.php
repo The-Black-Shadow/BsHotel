@@ -2,34 +2,15 @@
 require_once('./tcpdf/tcpdf.php');
 
 if (isset($_POST['print_ticket'])) {
-    $useremail = $_SESSION['email'];
-
-    // Prepare the SQL statement
-    $stmt = $conn->prepare("SELECT * FROM booking WHERE email = ? LIMIT 1");
-    $stmt->bind_param("s", $useremail);
-
-    // Execute the query
-    $stmt->execute();
-
-    // Get the result set
-    $result = $stmt->get_result();
-
-    // Check if any rows were returned
-    if ($result->num_rows > 0) {
-        // Fetch the data from the result set (since we expect a single row, no need for a loop)
-        $row = $result->fetch_assoc();
-
-        // Now you can access the data using $row['column_name']
-        $name = $row['name'];
-        $email = $row['email'];
-        $check_in = $row['check_in'];
-        $check_out = $row['check_out'];
-        $adults = $row['adults'];
-        $children = $row['children'];
-        $rooms = $row['rooms'];
-        $room_type = $row['room_type'];
-
-        $address=$_SESSION['address'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $address = $_POST['address'];
+    $check_in = $_POST['check_in'];
+    $check_out = $_POST['check_out'];
+    $adults = $_POST['adults'];
+    $children = $_POST['children'];
+    $rooms = $_POST['rooms'];
+    $room_type = $_POST['room_type'];
 
         // Clear any previous output
         ob_clean();
@@ -70,5 +51,5 @@ if (isset($_POST['print_ticket'])) {
         $pdf->Output('ticket.pdf', 'D');
         exit;
     }
-}
+
 ?>

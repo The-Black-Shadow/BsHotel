@@ -4,36 +4,15 @@
    include 'php/print.php';
    $useremail=$_SESSION['email'];
 
-// Prepare the SQL statement
-$stmt = $conn->prepare("SELECT * FROM booking WHERE email = ? LIMIT 1");
-$stmt->bind_param("s", $useremail);
+   // Prepare the SQL statement
+   $stmt = $conn->prepare("SELECT * FROM booking WHERE email = ?");
+   $stmt->bind_param("s", $useremail);
 
-// Execute the query
-$stmt->execute();
+   // Execute the query
+   $stmt->execute();
 
-// Get the result set
-$result = $stmt->get_result();
-
-// Check if any rows were returned
-if ($result->num_rows > 0) {
-    // Fetch the data from the result set (since we expect a single row, no need for a loop)
-    $row = $result->fetch_assoc();
-
-    // Now you can access the data using $row['column_name']
-    $name = $row['name'];
-    $address = $row['email'];
-    $check_in = $row['check_in'];
-    $check_out = $row['check_out'];
-    $adults = $row['adults'];
-    $children = $row['children'];
-    $rooms = $row['rooms'];
-    $room_type = $row['room_type'];
-
-    // Do something with the data...
-} else {
-    // No matching rows found
-    echo "No data found for the user: " . $_SESSION['email'];
-}
+   // Get the result set
+   $result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -164,18 +143,38 @@ if ($result->num_rows > 0) {
     <h3 style="text-align: center;">Booking status</h3>
 
     <?php
-      if ($result->num_rows > 0){
-        echo '
-        <p>Check_in: ' . $check_in . '</p>
-        <p>Check out: ' . $check_out . '</p>
-        <p>Adults: ' . $adults . '</p>
-        <p>Children: ' . $children . '</p>
-        <p>Rooms: ' . $rooms . '</p>
-        <p>Room Type: ' . $room_type . '</p>
-        <form method="post">
-          <button type="submit" name="print_ticket">Print Ticket</button>
-        </form>';
-      }
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $check_in = $row['check_in'];
+            $check_out = $row['check_out'];
+            $adults = $row['adults'];
+            $children = $row['children'];
+            $rooms = $row['rooms'];
+            $room_type = $row['room_type'];
+    
+            echo '
+            <p>Check_in: ' . $check_in . '</p>
+            <p>Check out: ' . $check_out . '</p>
+            <p>Adults: ' . $adults . '</p>
+            <p>Children: ' . $children . '</p>
+            <p>Rooms: ' . $rooms . '</p>
+            <p>Room Type: ' . $room_type . '</p>
+            <form method="post">
+                <input type="hidden" name="name" value="' . $_SESSION['name'] . '">
+                <input type="hidden" name="email" value="' . $_SESSION['email'] . '">
+                <input type="hidden" name="address" value="' . $_SESSION['address'] . '">
+                <input type="hidden" name="check_in" value="' . $check_in . '">
+                <input type="hidden" name="check_out" value="' . $check_out . '">
+                <input type="hidden" name="adults" value="' . $adults . '">
+                <input type="hidden" name="children" value="' . $children . '">
+                <input type="hidden" name="rooms" value="' . $rooms . '">
+                <input type="hidden" name="room_type" value="' . $room_type . '">
+                <button type="submit" name="print_ticket">Print Ticket</button>
+            </form>';
+        }
+    } else {
+        echo "No data found for the user: " . $_SESSION['email'];
+    }
     ?>
 
 
