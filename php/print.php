@@ -19,7 +19,7 @@ if (isset($_POST['print_ticket'])) {
         $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
 
         // Set the creator and author
-        $pdf->SetCreator('Your Company Name');
+        $pdf->SetCreator('BS Online Booking');
         $pdf->SetAuthor('Md Mehedi Hasan');
         $pdf->SetTitle('Ticket');
 
@@ -51,5 +51,5 @@ if (isset($_POST['print_ticket'])) {
         $pdf->Output('ticket.pdf', 'D');
         exit;
     }
-
+    
 ?>
