@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $check_inn = date('Y-m-d', strtotime($_POST['check_in']));
     $check_outt = date('Y-m-d', strtotime($_POST['check_out']));
     $room_type = isset($_POST['room_type']) ? $_POST['room_type'] : '';
-    mysqli_query($conn, "insert into booking values('$name', '$email', '$check_inn', '$check_outt', '$_POST[adults]', '$_POST[children]', '$_POST[rooms]', '$room_type')");
+    mysqli_query($conn, "insert into booking (name, email, check_in, check_out, adults, children, rooms, room_type) values ('$name', '$email', '$check_inn', '$check_outt', '$_POST[adults]', '$_POST[children]', '$_POST[rooms]', '$room_type')");
 
     // Set a session variable to indicate successful booking
     $_SESSION['booking_success'] = true;

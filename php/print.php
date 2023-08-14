@@ -2,6 +2,7 @@
 require_once('./tcpdf/tcpdf.php');
 
 if (isset($_POST['print_ticket'])) {
+    $booking_id= $_POST['booking_id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $address = $_POST['address'];
@@ -33,6 +34,7 @@ if (isset($_POST['print_ticket'])) {
         $pdf->Cell(0, 10, '---------------------', 0, 1, 'C');
 
         $pdf->SetFont('helvetica', '', 12);
+        $pdf->Cell(0, 10, 'Booking Id: ' . $booking_id, 0, 1);
         $pdf->Cell(0, 10, 'Name: ' . $name, 0, 1);
         $pdf->Cell(0, 10, 'Email : ' . $email, 0, 1);
         $pdf->Cell(0, 10, 'Address : ' . $address, 0, 1);

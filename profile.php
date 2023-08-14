@@ -145,6 +145,7 @@
     <?php
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+            $booking_id = $row['booking_id'];
             $check_in = $row['check_in'];
             $check_out = $row['check_out'];
             $adults = $row['adults'];
@@ -153,6 +154,7 @@
             $room_type = $row['room_type'];
     
             echo '
+            <p>Booking_id: ' . $booking_id . '</p>
             <p>Check_in: ' . $check_in . '</p>
             <p>Check out: ' . $check_out . '</p>
             <p>Adults: ' . $adults . '</p>
@@ -160,6 +162,7 @@
             <p>Rooms: ' . $rooms . '</p>
             <p>Room Type: ' . $room_type . '</p>
             <form method="post">
+                <input type="hidden" name="booking_id" value="' . $booking_id . '">
                 <input type="hidden" name="name" value="' . $_SESSION['name'] . '">
                 <input type="hidden" name="email" value="' . $_SESSION['email'] . '">
                 <input type="hidden" name="address" value="' . $_SESSION['address'] . '">
