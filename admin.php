@@ -37,6 +37,7 @@
         // Add booking details
         while ($row = $result->fetch_assoc()) {
             $pdf->SetFont('helvetica', '', 12);
+            $pdf->Cell(0, 10, 'Booking Id: ' . $row['booking_id'], 0, 1);
             $pdf->Cell(0, 10, 'Name: ' . $row['name'], 0, 1);
             $pdf->Cell(0, 10, 'Email: ' . $row['email'], 0, 1);
             $pdf->Cell(0, 10, 'Check-in: ' . $row['check_in'], 0, 1);
@@ -98,20 +99,15 @@
             if ($result->num_rows > 0) {
                 echo '<h2>Bookings for ' . $selectedDate . '</h2>';
                 echo '<table border="1">';
-                echo '<tr><th>Name</th><th>Email</th><th>Check-in</th><th>Check-out</th><th>Actions</th></tr>';
+                echo '<tr><th>Booking Id</th><th>Name</th><th>Email</th><th>Check-in</th><th>Check-out</th></tr>';
 
                 while ($row = $result->fetch_assoc()) {
                     echo '<tr>';
+                    echo '<td>' . $row['booking_id'] . '</td>';
                     echo '<td>' . $row['name'] . '</td>';
                     echo '<td>' . $row['email'] . '</td>';
                     echo '<td>' . $row['check_in'] . '</td>';
-                    echo '<td>' . $row['check_out'] . '</td>';
-                    echo '<td>
-                            <form method="post">
-                                <input type="hidden" name="check_in" value="' . $selectedDate . '">
-                                <button type="submit" name="deleteBooking">Delete</button>
-                            </form>
-                        </td>';
+                    echo '<td>' . $row['check_out'] . '</td>';;
                     echo '</tr>';
                 }
 
