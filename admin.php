@@ -116,13 +116,59 @@
                 echo '<p>No bookings found for ' . $selectedDate . '</p>';
             }
         }       
-
-        // Display delete message if set
-        if (isset($_SESSION['deleteMessage'])) {
-            echo '<p>' . $_SESSION['deleteMessage'] . '</p>';
-            unset($_SESSION['deleteMessage']);
-        }
     ?>
+    <br><br>
+    <?php
+if (isset($_POST['deleteBooking'])) {
+    // Get the booking ID from the form
+    $bookingID = $_POST['bookingID'];
+
+    // Include your database connection file
+    include 'connection.php';
+
+    // Prepare and execute the DELETE query
+    $sql = "DELETE FROM booking WHERE booking_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $bookingID); // Assuming booking_id is an integer
+    if ($stmt->execute()) {
+        // Set a session variable to indicate successful booking deletion
+        $_SESSION['delete_booking'] = true;
+    } else {
+        // Set a session variable to indicate unsuccessful booking deletion
+        $_SESSION['delete_booking'] = false;
+    }
+
+    // Close the statement and the database connection
+    $stmt->close();
+    $conn->close();
+
+    // Redirect back to the original page after processing the form
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit(); // Make sure to exit after the redirect
+}
+
+// Check if the booking deletion was successful and show the appropriate message
+if (isset($_SESSION['delete_booking'])) {
+    if ($_SESSION['delete_booking']) {
+        echo '<script type="text/javascript">
+                window.onload = function () { alert("Booking deleted successfully"); } 
+            </script>';
+    } else {
+        echo '<script type="text/javascript">
+                window.onload = function () { alert("Error deleting booking"); } 
+            </script>';
+    }
+
+    // Reset the session variable to prevent showing the message again on reload
+    unset($_SESSION['delete_booking']);
+}
+?>
+
+    <p>Delete Booking :</p>
+        <form method="post">
+            <input type="number" name="bookingID" id="" placeholder="Enter Booking Id">
+            <button type="submit" name="deleteBooking">Delete</button>
+        </form>
 
     <a href="logout.php">Logout</a>
 </body>
