@@ -29,7 +29,7 @@
          <a href="#home">home</a>
          <a href="#about">about</a>
          <a href="#room">Hotel</a>
-         <a href="travelling.html">Travelling</a>
+         <!-- <a href="travelling.html">Travelling</a> -->
          <a href="#gallery">gallery</a>
          <a href="#review">review</a>
          <a href="#faq">faq</a>

@@ -47,8 +47,8 @@
          <a href="#home">home</a>
          <a href="#about">about</a>
          <a href="#room">Hotel</a>
-         <a href="travelling.html">Travelling</a>
-         <a href="parlour.html">Parlour</a>
+         <!-- <a href="travelling.html">Travelling</a>
+         <a href="parlour.html">Parlour</a> -->
          <a href="#gallery">gallery</a>
          <a href="#review">review</a>
          <a href="#faq">faq</a>
@@ -72,28 +72,28 @@
             <div class="swiper-slide slide" style="background: url(images/home-slide1.jpg) no-repeat;">
                <div class="content">
                   <h3>it's where dreams come true</h3>
-                  <a href="#" class="btn"> visit our offer</a>
+                  <a href="#room" class="btn"> visit our offer</a>
                </div>
             </div>
 
             <div class="swiper-slide slide" style="background: url(images/home-slide2.jpg) no-repeat;">
                <div class="content">
                   <h3>it's where dreams come true</h3>
-                  <a href="#" class="btn"> visit our offer</a>
+                  <a href="#room" class="btn"> visit our offer</a>
                </div>
             </div>
 
             <div class="swiper-slide slide" style="background: url(images/home-slide3.jpg) no-repeat;">
                <div class="content">
                   <h3>it's where dreams come true</h3>
-                  <a href="#" class="btn"> visit our offer</a>
+                  <a href="#room" class="btn"> visit our offer</a>
                </div>
             </div>
 
             <div class="swiper-slide slide" style="background: url(images/home-slide4.jpg) no-repeat;">
                <div class="content">
                   <h3>it's where dreams come true</h3>
-                  <a href="#" class="btn"> visit our offer</a>
+                  <a href="#room" class="btn"> visit our offer</a>
                </div>
             </div>
 

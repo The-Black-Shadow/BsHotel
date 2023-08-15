@@ -77,7 +77,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #75E6DA;
             margin: 0;
             padding: 0;
         }
@@ -124,7 +124,7 @@
         }
         button {
             padding: 10px 15px;
-            background-color: #007bff;
+            background-color: #189AB4;
             color: #fff;
             border: none;
             border-radius: 3px;
@@ -132,7 +132,7 @@
             transition: background-color 0.2s;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #05445E;
         }
         a {
             display: inline-block;
@@ -141,14 +141,22 @@
             color: #007bff;
         }
         a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
-        .booking-post {
-            text-align: center;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+        .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #189AB4;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+
+        .button:hover {
+        background-color: #05445E;
         }
     </style>
 </head>
@@ -257,25 +265,8 @@ if (isset($_SESSION['delete_booking'])) {
 }
 ?>
 
-<div class="booking-post">
-            <h2>Room Booking Post</h2>
-            <form method="post">
-                <label for="room_type">Room type:</label>
-                <select name="room_type" class="input">
-                    <option value="Ac rooms">ac_room</option>
-                    <option value="Non ac rooms">non_ac_room</option>
-                    <option value="Exclusive rooms">exclusive_rooms</option>
-                </select>
-                <label for="description">Room description:</label>
-                <textarea name="description" form="usrform" rows="4">Enter text here...</textarea>
-                <label for="price">Price:</label>
-                <input type="number" name="price" id="" placeholder="Room price">
-                <br><br>
-                <button type="submit" name="post_booking">Booking Post</button>
-            </form>
-        </div>
-
-        <a href="logout.php">Logout</a>
+    <div>
+        <a href="logout.php" class="button">Logout</a>
     </div>
 </body>
 </html>
