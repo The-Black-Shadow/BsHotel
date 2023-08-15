@@ -74,15 +74,108 @@
 <html>
 <head>
     <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .admin-form-container {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .admin-form, .delete-form {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        h1 {
+            margin: 0 0 20px;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label, input, select, textarea {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .booking-post {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome, Admin</h1>
-    <form method="post">
-        <label for="date">Select Date:</label>
-        <input type="date" id="date" name="check_in">
-        <button type="submit" name="viewBookings">View Bookings</button>
-        <button type="submit" name="printBookings">Print Bookings</button>
-    </form>
+<div class="container">
+        <div class="header">
+            <h1>Welcome, Admin</h1>
+        </div>
+
+        <div class="admin-form-container">
+            <div class="admin-form">
+                <form method="post">
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" name="check_in">
+                    <button type="submit" name="viewBookings">View Bookings</button>
+                    <button type="submit" name="printBookings">Print Bookings</button>
+                </form>
+            </div>
+
+            <div class="delete-form">
+                <form method="post">
+                    <label for="bookingID">Delete Booking:</label>
+                    <input type="number" name="bookingID" placeholder="Enter Booking Id">
+                    <button type="submit" name="deleteBooking">Delete</button>
+                </form>
+            </div>
+        </div>
 
     <?php
         if (isset($_POST['viewBookings'])) {
@@ -164,12 +257,25 @@ if (isset($_SESSION['delete_booking'])) {
 }
 ?>
 
-    <p>Delete Booking :</p>
-        <form method="post">
-            <input type="number" name="bookingID" id="" placeholder="Enter Booking Id">
-            <button type="submit" name="deleteBooking">Delete</button>
-        </form>
+<div class="booking-post">
+            <h2>Room Booking Post</h2>
+            <form method="post">
+                <label for="room_type">Room type:</label>
+                <select name="room_type" class="input">
+                    <option value="Ac rooms">ac_room</option>
+                    <option value="Non ac rooms">non_ac_room</option>
+                    <option value="Exclusive rooms">exclusive_rooms</option>
+                </select>
+                <label for="description">Room description:</label>
+                <textarea name="description" form="usrform" rows="4">Enter text here...</textarea>
+                <label for="price">Price:</label>
+                <input type="number" name="price" id="" placeholder="Room price">
+                <br><br>
+                <button type="submit" name="post_booking">Booking Post</button>
+            </form>
+        </div>
 
-    <a href="logout.php">Logout</a>
+        <a href="logout.php">Logout</a>
+    </div>
 </body>
 </html>
