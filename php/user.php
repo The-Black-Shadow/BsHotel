@@ -1,10 +1,8 @@
 <?php
-// Start the session
 session_start();
 $acctype1 = 'admin';
 $acctype = 'user';
 
-// Check if the form was submitted
 if (isset($_POST['signUp'])) {
     include 'connection.php';
 
@@ -19,34 +17,27 @@ if (isset($_POST['signUp'])) {
                 window.onload = function () { alert("This email is already registered. Please use a different email."); } 
               </script>';
     } else {
-        // Email does not exist, proceed with registration
-        // Prepare the statement to insert user data
         $stmt = $conn->prepare("INSERT INTO user (email, name, password, address, acc_type) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $_POST['email'], $_POST['name'], $_POST['password'], $_POST['address'], $acctype);
         $stmt->execute();
 
-        // Set a session variable to indicate successful registration
         $_SESSION['register_successful'] = true;
 
-        // Redirect back to the original page after processing the form
         header("Location: ".$_SERVER['PHP_SELF']);
-        exit(); // Make sure to exit after the redirect
+        exit(); 
     }
 }
 
-// Check if the registration was successful and show the success message
 if (isset($_SESSION['register_successful']) && $_SESSION['register_successful']) {
     echo '<script type="text/javascript">
             window.onload = function () { alert("Registration successful"); } 
           </script>';
 
-    // Reset the session variable to prevent showing the message again on reload
     $_SESSION['register_successful'] = false;
 }
 //=================================================================================
-// Check if the form was submitted
 if (isset($_POST['logIn'])) {
-    include 'connection.php'; // Include your database connection file
+    include 'connection.php';
 
     // Escape user inputs to prevent SQL injection
     $email = mysqli_real_escape_string($conn, $_POST['name']);
@@ -56,7 +47,6 @@ if (isset($_POST['logIn'])) {
     $query = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
     $result = mysqli_query($conn, $query);
 
-    // Check if the query executed successfully
     if ($result) {
         // Check if there is exactly one matching user
         if (mysqli_num_rows($result) == 1) {
@@ -82,13 +72,11 @@ if (isset($_POST['logIn'])) {
                 exit();
             }
         } else {
-            // Invalid login credentials
             $_SESSION['error_message'] = "Invalid email or password!";
             header("Location: index.php");
             exit();
         }
     } else {
-        // Error in the database query
         $_SESSION['error_message'] = "Error in database query.";
         header("Location: index.php");
         exit();
@@ -101,11 +89,9 @@ if (isset($_POST['upProfile'])) {
     $password = $_POST['password'];
     $address = $_POST['address'];
 
-    // Prepare the update SQL statement
     $stmt = $conn->prepare("UPDATE user SET name = ?, password = ?, address = ? WHERE email = ?");
     $stmt->bind_param("ssss", $name, $password, $address, $email);
 
-    // Execute the query
     if ($stmt->execute()) {
         // Update successful
         $_SESSION['name'] = $name;

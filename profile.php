@@ -4,14 +4,11 @@
    include 'php/print.php';
    $useremail=$_SESSION['email'];
 
-   // Prepare the SQL statement
    $stmt = $conn->prepare("SELECT * FROM booking WHERE email = ?");
    $stmt->bind_param("s", $useremail);
 
-   // Execute the query
    $stmt->execute();
 
-   // Get the result set
    $result = $stmt->get_result();
 ?>
 
@@ -76,7 +73,6 @@
       text-decoration: none;
     }
 
-    /* Additional styles for the form section */
     .edit-profile-form {
       display: none;
       margin-top: 20px;
@@ -192,7 +188,6 @@
         <input type="text" name="name" placeholder="Name">
         <input type="password" name="password" placeholder="Password">
         <input type="text" name="address" placeholder="Address">
-        <!-- Add more input fields as needed -->
 
         <button type="submit" name="upProfile">Update Profile</button>
       </form>

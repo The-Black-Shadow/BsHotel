@@ -42,13 +42,12 @@
             $pdf->Cell(0, 10, 'Email: ' . $row['email'], 0, 1);
             $pdf->Cell(0, 10, 'Check-in: ' . $row['check_in'], 0, 1);
             $pdf->Cell(0, 10, 'Check-out: ' . $row['check_out'], 0, 1);
-            // ... Add more details as needed ...
             $pdf->Cell(0, 10, '-----------------------', 0, 1);
         }
 
         // Output the PDF as a download
         $pdf->Output('bookings_for_' . $selectedDate . '.pdf', 'D');
-        exit(); // Make sure to exit the script after generating the PDF
+        exit(); 
     }
 
 
@@ -224,31 +223,26 @@ if (isset($_POST['deleteBooking'])) {
     // Get the booking ID from the form
     $bookingID = $_POST['bookingID'];
 
-    // Include your database connection file
     include 'connection.php';
 
     // Prepare and execute the DELETE query
     $sql = "DELETE FROM booking WHERE booking_id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $bookingID); // Assuming booking_id is an integer
+    $stmt->bind_param("i", $bookingID); 
     if ($stmt->execute()) {
-        // Set a session variable to indicate successful booking deletion
         $_SESSION['delete_booking'] = true;
     } else {
-        // Set a session variable to indicate unsuccessful booking deletion
         $_SESSION['delete_booking'] = false;
     }
 
-    // Close the statement and the database connection
     $stmt->close();
     $conn->close();
 
-    // Redirect back to the original page after processing the form
     header("Location: ".$_SERVER['PHP_SELF']);
-    exit(); // Make sure to exit after the redirect
+    exit(); 
 }
 
-// Check if the booking deletion was successful and show the appropriate message
+
 if (isset($_SESSION['delete_booking'])) {
     if ($_SESSION['delete_booking']) {
         echo '<script type="text/javascript">
@@ -260,7 +254,6 @@ if (isset($_SESSION['delete_booking'])) {
             </script>';
     }
 
-    // Reset the session variable to prevent showing the message again on reload
     unset($_SESSION['delete_booking']);
 }
 ?>
